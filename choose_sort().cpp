@@ -11,12 +11,9 @@ int sort(int arr[],int n)
 				int k=arr[m];
 				   arr[m]=arr[j];
 				   arr[j]=k;
-			}
-			
+			}	
 		}
-	
 	}
-
 	return 0;
 }
 int main(void)
@@ -29,7 +26,6 @@ int main(void)
 	cout<<"\n";
 	for(int i=0;i<10;i++)
      cout<<arr[i]<<" ";	
-	
 	
 	return 0;
 }
