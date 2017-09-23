@@ -19,6 +19,29 @@ int InitList (SqList &L)          //实参传递，函数对表才能进行数据操作
   return 1;
 }//初始化一个表 
 
+int ListInsert(SqList &L,int i,int e)
+{
+	
+if(i<1&&i>L.length+1)
+return 0;	//判断i值是否合法 
+	if(L.length<L.listsize)
+	{
+		int *newbase=(int *)realloc(L.elem,L.listsize+sizeof(int)*10);
+		if(!newbase)
+		exit(-2);
+		L.elem=newbase;
+		L.listsize+=10;
+	}
+	int *p;
+	int *q=&(L.elem[i-1]);
+    for(p=&(L.elem[L.length-1]);p>=q;p--)
+    {  *(p+1)=*p;   }
+     *p=e;
+     L.length++;
+
+return 1;	
+}
+ 
 
 
 int main()
