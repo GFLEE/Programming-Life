@@ -32,7 +32,7 @@ return 0;	                   //judge whether i is legal,i值是否合法
 		L.elem=newbase;      //renew the address of first,将首地址重新赋给elem 
 		L.listsize+=10;       //容量增加 
 	}
-	int *p;                  //pointer of tail,数组尾指针 
+	int *p=&(L.elem[L.length-1]);                  //pointer of tail,数组尾指针 
 	int *q=&(L.elem[i-1]);   //point of that ready to insert,待插入位置指针 
     for(p=&(L.elem[L.length-1]);p>=q;p--)     //tail pointer move forward,and values move backward,尾指针p前移，使前面的元素依次后移将q所指空间腾出 
     {  *(p+1)=*p;   }
@@ -56,8 +56,8 @@ int main()
 	ListInsert(L,1,7);
 
 	
-	for(int i=0;i<L.length;i++)   //show all
-	printf("%d",L.elem[i]);
+	for(int i=0;i<(L).length;i++)   //show all
+	printf("%d",(L).elem[i]);
 	 
 	  
 
