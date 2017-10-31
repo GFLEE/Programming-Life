@@ -1,5 +1,5 @@
 
-var http=require('http');   //define a http modules,core module
+var http=require('http');   //define a http module,core module
 
 
 var server=http.createServer(function(req,res){      //use http to define a server
