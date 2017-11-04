@@ -36,13 +36,22 @@ return courseData;
 
 }
 ;
+function Trim(str)
+
+         { 
+
+             return str.replace(/(^\s*)|(\s*$)/g, ""); 
+
+     }
+;
 function printCourseData(courseData){
 courseData.forEach(function(item){
     var chapterTitle=item.chapterTitle
     console.log(chapterTitle+'\n')
     item.videos.forEach(function(video)
 {
-     console.log('【'+video.id+'】'+video.title+'\n')
+     var videoTitle='【'+video.id+'】'+Trim(video.title)+'\n'
+     console.log(videoTitle)
 
 })
 })
