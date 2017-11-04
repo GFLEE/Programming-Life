@@ -88,13 +88,20 @@
 // }
 // var DOG=new dog('dogge!');
 // DOG.speak();
-// var arr=new Array(100);
-// arr[0]=1;
-// arr[1]=1;
-// for(var i=2;i<100;i++)
-// {
-//     arr[i]=arr[i-1]+arr[i-2];
-
+// var arr = new Array(100);
+// arr[0] = 1;
+// arr[1] = 1;
+// for (var i = 2; i < 100; i++) {
+//   arr[i] = arr[i - 1] + arr[i - 2];
 // }
-// for(let i=0;i<100;i++)
-// console.log(arr[i]);
+// for (let i = 0; i < 100; i++) 
+// console.log(arr[i]);s
+//  =====================================
+
+console.log('nman');
+console.log('man');
+
+
+
+
+
