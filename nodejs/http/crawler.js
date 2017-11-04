@@ -1,10 +1,10 @@
 var http = require("http");
-var cheerio = require("cheerio");
+var cheerio = require("./node_modules/cheerio/lib/cheerio.js");
 var url = "http://course.casvot.com";
 function filter(html) {
   var $ = cheerio.load(html);
   var topics = $(".entry-title");
-  console(topics);
+  console.log(topics);
 }
 http
   .get(url, function(res) {
