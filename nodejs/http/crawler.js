@@ -21,7 +21,8 @@ function filter(html) {
  videos.each(function(){
      var video=$(this).find(".J-media-item")
          var videoTitle=video.text()
-         var id=video.attr('href').split('video/')[1]   
+          var id=video.parent().attr('data-media-id')
+          // ('href').split('video/')[1]   
        chapterData.videos.push({
            title:videoTitle,
            id:id
