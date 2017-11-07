@@ -12,4 +12,4 @@ http.get("http://www.weather.com.cn/data/sk/101040100.html", function(res) {
   });
 }).on('error', function(e) {
   console.log("Got error: " + e.message);
-});
+});gg
