@@ -57,7 +57,7 @@ courseData.forEach(function(item){
 })
 })
 }
-
+echo(man)
 
 http
   .get(url, function(res) {
