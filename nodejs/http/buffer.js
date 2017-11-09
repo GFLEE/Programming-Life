@@ -70,10 +70,11 @@ assert.deepEqual(date,object)      //
 //   );
 
 
-// assert.doesNotThrow(function(err,mess){
-
+// assert.doesNotThrow(function(err,mess){    //如果抛出错误且错误类型与 error 参数指定的相同，则抛出 AssertionError。 如果错误类型不相同，或 error 参数为 undefined，则抛出错误。
+                                           //如果抛出了 AssertionError 且有给 message 参数传值，则 message 参数的值会被附加到 AssertionError 的信息中：
 //    throw new TypeError('new eeror')
 // },TypeError,'throw err')
 
 // assert.ifError(new Error()); //抛出error
 
+assert.ok(0)
