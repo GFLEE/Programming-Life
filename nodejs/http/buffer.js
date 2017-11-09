@@ -70,7 +70,10 @@ assert.deepEqual(date,object)      //
 //   );
 
 
-assert.doesNotThrow(function(err,mess){
+// assert.doesNotThrow(function(err,mess){
 
-   throw new TypeError('new eeror')
-},TypeError,'throw err')
+//    throw new TypeError('new eeror')
+// },TypeError,'throw err')
+
+// assert.ifError(new Error()); //抛出error
+
