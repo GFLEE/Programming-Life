@@ -62,10 +62,12 @@ courseData.forEach(function(item){
 
 function getPage(url)
 {
-  return new promise(res,rej)
-}
+  return new promise(function(res,rej){
+    console.log('crawling pages......')
+  })
 
-http
+
+  http
   .get(url, function(res) {
     var html = " ";
     res.on("data", function(data) {
@@ -73,12 +75,18 @@ http
     });
     res.on("end", function() {
        
-      var courseData=filter(html);
+      res(html)
+      // var courseData=filter(html);
 
       printCourseData(courseData);
 
     });
-  })
-  .on("error", function() {
+  }).on("error", function(e) {
+    rej(e)
     console.log("error accured.");
   });
+
+}
+
+
+  
