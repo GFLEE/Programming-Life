@@ -64,27 +64,28 @@ function getPage(url)
 {
   return new promise(function(res,rej){
     console.log('crawling pages......')
+    http.get(url, function(res) {
+      var html = " ";
+      res.on("data", function(data) {
+        html += data;
+      });
+      res.on("end", function() {
+         
+        res(html);
+
+        var courseData=filter(html);
+  
+        printCourseData(courseData);
+  
+      });
+    }).on("error", function(e) {
+      rej(e);
+      console.log("error accured.");
+    });
   })
 
 
-  http
-  .get(url, function(res) {
-    var html = " ";
-    res.on("data", function(data) {
-      html += data;
-    });
-    res.on("end", function() {
-       
-      res(html)
-      // var courseData=filter(html);
-
-      printCourseData(courseData);
-
-    });
-  }).on("error", function(e) {
-    rej(e)
-    console.log("error accured.");
-  });
+ 
 
 }
 
