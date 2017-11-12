@@ -1,5 +1,5 @@
 var http = require("http");
-var promise=require('Promise')
+var Promise=require('Promise')
 var cheerio = require("cheerio");
 var url = "http://www.imooc.com/learn/348";
 function filter(html) {
@@ -62,8 +62,10 @@ courseData.forEach(function(item){
 
 function getPage(url)
 {
-  return new promise(function(res,rej){
+  return new Promise(function(resolve,reject){
+
     console.log('crawling pages......')
+
     http.get(url, function(res) {
       var html = " ";
       res.on("data", function(data) {
@@ -71,23 +73,26 @@ function getPage(url)
       });
       res.on("end", function() {
          
-        res(html);
+        resolve(html);
 
-        var courseData=filter(html);
+         console.log(html)
+        // var courseData=filter(html);
   
-        printCourseData(courseData);
+        // printCourseData(courseData);
   
       });
     }).on("error", function(e) {
-      rej(e);
+      reject(e);
       console.log("error accured.");
     });
   })
 
 
- 
+
 
 }
+
+getPage(url)
 
 
   
