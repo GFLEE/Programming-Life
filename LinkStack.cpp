@@ -21,7 +21,7 @@ void createStack(Stack *&s)
 
 //================push a element to the stack=============
     int Push(Stack *&s,int val)
-    {
+    { 
     	Stack *new_node;
     	
     	new_node=(Stack *)malloc(sizeof(Stack));
@@ -31,8 +31,8 @@ void createStack(Stack *&s)
     	
     	s->next=new_node;
 //    	s=new_node;  we did not do this ,always make 's' ponit to the head node.....
-//because first in last out....always insert new node after head node
-	}
+//because first in l  ast out....always insert new node after head node
+	}  
 	//notice: in LinkList,insert after head node is similar with this!!!!!!!!
 //=============Pop a val========================
   int  Pop(Stack *&s)
@@ -48,6 +48,7 @@ void createStack(Stack *&s)
 	  temp=s->next->data;
   	  cout<<"Pop: "<<temp<<endl;
   	  s->next=s->next->next;       //head node point to the third node 
+  	  free(p);
   	  return temp;
 		}
 	  }	
@@ -107,7 +108,7 @@ int main()
 	
 	for(int i=0;i<20;i++)
 	{
-		Push(s,i);
+		Push(s,i+1);
 	}
 	
 	displayStack(s);

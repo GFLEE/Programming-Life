@@ -129,6 +129,7 @@ int pop(Stack *&s)     //
 				  }	
 				  else{
 				  flag=0;
+				  break;
 				  }
 				m++;
 		   
@@ -151,7 +152,7 @@ int main(){
 	displayStack(s);
     isEmpty(s);
 	
-	int strings[]={1,3,3,4,4,2,1};
+	int strings[]={5,2,3,4,3,2,1};
 	symmetry(strings);
 	
 	
