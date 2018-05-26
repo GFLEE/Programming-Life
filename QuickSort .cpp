@@ -4,23 +4,23 @@ using namespace std;
 #define N 15 
 int partition(int arr[],int low,int high) {
 	int key=arr[low];
-	while(low<high)         //lowºÍhighÅöÍ·ÎªÖ¹ 
+	while(low<high)         //lowå’Œhighç¢°å¤´ä¸ºæ­¢ 
 	{
-		while(low<high&&arr[high]>=key)      //highÏòÇ°É¨ÃèÖ±µ½ÓĞĞ¡ÓÚkeyµÄÊıÎªÖ¹ 
+		while(low<high&&arr[high]>=key)      //highå‘å‰æ‰«æç›´åˆ°æœ‰å°äºkeyçš„æ•°ä¸ºæ­¢ 
 		high--;
-		if(low<high)                         //½«Õâ¸öÊı¸³¸øarr[low],Í¬Ê±lowÏòºóÒÆ 
+		if(low<high)                         //å°†è¿™ä¸ªæ•°èµ‹ç»™arr[low],åŒæ—¶lowå‘åç§» 
 		{
 			     arr[low++]=arr[high];
 		}
 		
-		while(low<high&&arr[low]<=key)      //lowÏòºóÉ¨ÃèÖ±µ½ÓĞ´óÓÚkeyµÄÊı³öÏÖ 
+		while(low<high&&arr[low]<=key)      //lowå‘åæ‰«æç›´åˆ°æœ‰å¤§äºkeyçš„æ•°å‡ºç° 
 		low++;                               
 		if(low<high)                         
 		{
-			arr[high--]=arr[low];           //°ÑÕâ¸ö´óÓÚkeyµÄÊı¸³¸øarr[high],Í¬Ê±highÏòÇ°ÒÆÎ» 
+			arr[high--]=arr[low];           //æŠŠè¿™ä¸ªå¤§äºkeyçš„æ•°èµ‹ç»™arr[high],åŒæ—¶highå‘å‰ç§»ä½ 
 		}				
 	}
-	arr[low]=key;                           //´ËÊ±lowºÍhighÒÑ¾­ÅöÍ·£¬low==high£¬´¦ÓÚ»ù×¼´¦£¬²¢·µ»ØÕâ¸öÎ»ÖÃ 
+	arr[low]=key;                           //æ­¤æ—¶lowå’Œhighå·²ç»ç¢°å¤´ï¼Œlow==highï¼Œå¤„äºåŸºå‡†å¤„ï¼Œå¹¶è¿”å›è¿™ä¸ªä½ç½® 
 	return low;
 }
  
@@ -31,7 +31,7 @@ int partition(int arr[],int low,int high) {
  	if(start<end)
  	{
  		pos=partition(arr,start,end);
- 		quicksort(arr,start,pos-1);   //Áô×¡Ã¿Ò»¸öposÔÚÊı×éÖĞµÄÎ»ÖÃ£»×óÓÒÁ½¸ö²¿·Ö·Ö±ğµİ¹é 
+ 		quicksort(arr,start,pos-1);   //ç•™ä½æ¯ä¸€ä¸ªposåœ¨æ•°ç»„ä¸­çš„ä½ç½®ï¼›å·¦å³ä¸¤ä¸ªéƒ¨åˆ†åˆ†åˆ«é€’å½’ 
  		quicksort(arr,pos+1,end);
  	 }
  	
