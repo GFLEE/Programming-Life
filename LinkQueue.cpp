@@ -134,8 +134,8 @@ int main()
    		insertQueue(L,i);
 	}	
 	displayQueue(L);
-destroyQueue(L);
-displayQueue(L);
+//destroyQueue(L);
+//displayQueue(L);
 
 	return 0;
 }
