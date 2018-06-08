@@ -41,7 +41,7 @@ for(int m=n;m<2*n-1;m++)    // load data to nomal node ('n' to last node )
 			{
 				min2=min1;
 				min1=ht[i].weight;
-				rightNode=leftNode;   //jesus
+//				rightNode=leftNode;   //jesus!
 				leftNode=i;
 				
 			}
@@ -75,17 +75,17 @@ int main()
 	
      
 	ht[0].weight=1;
-	ht[1].weight=4;
-	ht[2].weight=6;
+	ht[1].weight=3;
+	ht[2].weight=5;
 	ht[3].weight=7;
-    ht[4].weight=9;
+//    ht[4].weight=9;
 
 	 
-	createHT(ht,5);
+	createHT(ht,4);
 	
 	
 
-	  for(int k=0;k<9;k++)
+	  for(int k=0;k<7;k++)
 	  {
 	  	cout<<ht[k].weight<<',';
 	  }
