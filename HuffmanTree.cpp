@@ -85,6 +85,12 @@ int HfCoding(HTNode ht[],HCode hfcode[],int n)         // 'n' is the counts of l
 {
 	
 	HCode temp_hfcode;
+	
+	for(int k=0;k<N;k++)
+	{
+		temp_hfcode.code[k]=2;
+	}
+	
 	int father;
 	int current;
 	
@@ -100,13 +106,13 @@ int HfCoding(HTNode ht[],HCode hfcode[],int n)         // 'n' is the counts of l
 			if(ht[father].LNode==current)     //if left_child is the current leaf node;
 			{
 				
-				temp_hfcode.code[temp_hfcode.start--]=0;       //left -> 0
-//				temp_hfcode.start--;      //flag move
+				temp_hfcode.code[temp_hfcode.start]=0;       //left -> 0
+				temp_hfcode.start--;      //flag move
 				
 			}
 			else{
-				temp_hfcode.code[temp_hfcode.start--]=1;       //right -> 0
-//				temp_hfcode.start--; 
+				temp_hfcode.code[temp_hfcode.start]=1;       //right -> 0
+				temp_hfcode.start--; 
 			}
 		
 		 current = father;     //father  for the next judge	
@@ -120,7 +126,7 @@ int HfCoding(HTNode ht[],HCode hfcode[],int n)         // 'n' is the counts of l
 		
 		    
 			hfcode[i] = temp_hfcode ;  //save one leaf node's coding to the array that save all nodes's huffman code.
-		    temp_hfcode.start++;  //revise the right starting  location of the huffman codes.
+		    temp_hfcode.start+=1;  //revise the right starting  location of the huffman codes.
 		
 	}
 
@@ -161,17 +167,17 @@ int main()
 //	  
 	  HfCoding(ht,hfcodes,5);
 //	  
-//	  cout<<endl;
+	  cout<<endl;
 	  
-//	  for(int i=0;i<5;i++)
-//	  {
-//	  	cout<<endl;
-//	  	for(int j=hfcodes[i].start;j<N;j++)
-//	  	{
-//	  		cout<<hfcodes[i].code[j]<<',';
-//		  }
-//	  	
-//	  }
+	  for(int i=0;i<5;i++)
+	  {
+	  	cout<<endl;
+	  	for(int j=hfcodes[i].start;j<N;j++)
+	  	{
+	  		cout<<hfcodes[i].code[j]<<',';
+		  }
+	  	
+	  }
 	  
 	  
 	return  0;
