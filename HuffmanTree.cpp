@@ -3,6 +3,7 @@ using namespace std;
 #include <stdio.h>
 #define MAX 100
 #define weight_MAX 32767
+#define N 100      //max huffman coding length
 
 typedef struct    //tree  Node stucture
 {
@@ -14,7 +15,14 @@ typedef struct    //tree  Node stucture
 	int RNode;
 
 }HTNode;
-
+//=====================huffman code arrar============================
+typedef struct {
+	
+	int code[N];
+	int start;
+	
+}HCode;
+//==================================================================
 void createHT(HTNode ht[],int n)  
 {
 		for(int i=0;i<2*n-1;i++)     //all the tree nodes initiate
@@ -41,6 +49,7 @@ for(int m=n;m<2*n-1;m++)    // load data to nomal node ('n' to last node )
 			{
 				min2=min1;
 				min1=ht[i].weight;
+				rightNode=leftNode; 
 //				rightNode=leftNode;   //jesus!
 				leftNode=i;
 				
@@ -68,7 +77,60 @@ for(int m=n;m<2*n-1;m++)    // load data to nomal node ('n' to last node )
 	}	
 }
 
+//===================================huffman coding at 2018.06.9=======================================
 
+//note: left->0   ;  right->1
+
+int HfCoding(HTNode ht[],HCode hfcode[],int n)         // 'n' is the counts of leaf nodes;
+{
+	
+	HCode temp_hfcode;
+	int father;
+	int current;
+	
+	for(int i=0;i<n;i++)      //start coding for each leaf node;
+	{
+		temp_hfcode.start=N-1;    //load coding numbers from end to head,(satrt--)
+		
+		current=i;              //coding for one node ,need to initiate the current_location &parent'location 
+		father=ht[i].parent;        
+		
+		while(father!=-1)
+		{
+			if(ht[father].LNode==current)     //if left_child is the current leaf node;
+			{
+				
+				temp_hfcode.code[temp_hfcode.start--]=0;       //left -> 0
+//				temp_hfcode.start--;      //flag move
+				
+			}
+			else{
+				temp_hfcode.code[temp_hfcode.start--]=1;       //right -> 0
+//				temp_hfcode.start--; 
+			}
+		
+		 current = father;     //father  for the next judge	
+		 father = ht[current].parent;
+		
+		//bug report:
+//		  current = ht[i].parent;     //father  for the next judge	
+//		  father = ht[current].parent; 
+			
+		}        // now,one leaf node coding finished!
+		
+		    
+			hfcode[i] = temp_hfcode ;  //save one leaf node's coding to the array that save all nodes's huffman code.
+		    temp_hfcode.start++;  //revise the right starting  location of the huffman codes.
+		
+	}
+
+	
+	return 0;
+}
+
+
+
+//============================================================================================--===
 int main()
 {
 	HTNode ht[MAX];
@@ -78,20 +140,38 @@ int main()
 	ht[1].weight=3;
 	ht[2].weight=5;
 	ht[3].weight=7;
-//    ht[4].weight=9;
+    ht[4].weight=9;
 
 	 
-	createHT(ht,4);
+	createHT(ht,5);
 	
 	
 
-	  for(int k=0;k<7;k++)
+	  for(int k=0;k<9;k++)
 	  {
 	  	cout<<ht[k].weight<<',';
 	  }
 	  
+	  cout<<endl<<ht[5].RNode<<endl;
 	  
+//	  cout<<ht[7].weight<<','<<ht[8].weight<<endl;
+//cout<<ht[0].parent<<','<<ht[5].parent<<','<<ht[6].parent<<','<<ht[7].parent<<','<<ht[8].parent<<','<<ht[3].parent<<','<<ht[4].parent;
 	  
+	  HCode hfcodes[5];
+//	  
+	  HfCoding(ht,hfcodes,5);
+//	  
+//	  cout<<endl;
+	  
+//	  for(int i=0;i<5;i++)
+//	  {
+//	  	cout<<endl;
+//	  	for(int j=hfcodes[i].start;j<N;j++)
+//	  	{
+//	  		cout<<hfcodes[i].code[j]<<',';
+//		  }
+//	  	
+//	  }
 	  
 	  
 	return  0;
