@@ -9,7 +9,7 @@ typedef struct    //tree  Node stucture
 {
 	
 	int data;
-	double weight;
+	float weight;
 	int parent;
 	int LNode;
 	int RNode;
@@ -35,7 +35,7 @@ void createHT(HTNode ht[],int n)
 for(int m=n;m<2*n-1;m++)    // load data to nomal node ('n' to last node )   
 	{
 
-	double min1,min2;     //the minimum weight of two of all the leaf nodes.
+	float min1,min2;     //the minimum weight of two of all the leaf nodes.
 	    min1=min2=weight_MAX;	
 	
 	int leftNode,rightNode;   //confirm  the final left or right node  location
@@ -152,18 +152,18 @@ int main()
         }  
 	 
 	 FILE *write;
-	 write = fopen("huffman_table","w");     // single word huffman code
+	 write = fopen("huffman_table.txt","w");     // single word huffman code
 	
-	  double prob[100]={0};
+	  float prob[100]={0};
 	  
-		double pro;
+		float pro;
 
 	  int loop=0;
 	  
 	 while(!feof(fp))
 	  {
-	   fscanf(fp,"%lf",&pro);
-	   ht[loop].weight=(float)pro;
+	   fscanf(fp,"%f",&pro);
+	   ht[loop].weight=pro;
 	   loop++;
 	  }
 	  
@@ -174,7 +174,7 @@ int main()
 	
 	fclose(fp);
 	
-//	createHT(ht,66);
+	createHT(ht,66);
 	
 	
 	

@@ -10,7 +10,7 @@ int main()
 	
 	long int total=0;
 	long	int arr[66]={0};      //, arr-z ,arr-Z && ' '
-	double prob[66]={0};   // single word probibility
+	float prob[66]={0};   // single word probibility
     fp=fopen("sample.txt","r");
     write=fopen("prob.txt","w");
     
@@ -109,7 +109,7 @@ int main()
 	cout<<endl<<endl;
 	for(int k=0;k<66;k++)
 	{
-		prob[k]=arr[k]/(double)total;
+		prob[k]=arr[k]/(float)total;
 	}
 	
 	for(int k=0;k<66;k++)
@@ -121,7 +121,7 @@ int main()
 
 		for(int i=0;i<66;i++)
 		{
-			fprintf(write,"%5f\n",prob[i]); 
+			fprintf(write,"%.5f\n",prob[i]); 
 	
 		}
 
