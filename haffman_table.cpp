@@ -1,9 +1,9 @@
 #include "iostream"
 using namespace std;
 #include <stdio.h>
-#define MAX 100
+#define MAX 100   // leaf nodes
 #define weight_MAX 32767
-#define N 100      //max huffman coding length
+#define N 200      //max huffman coding length
 
 typedef struct    //tree  Node stucture
 {
@@ -142,10 +142,55 @@ int main()
 {
 	HTNode ht[MAX];
 	
+	FILE *fp;
+	fp=fopen("prob.txt","r");      //open probbility file
+	
+	 if(fp == NULL)  
+        {  
+           cout<<"ERROR!"<<endl;  
+              
+        }  
+	 
+	 FILE *write;
+	 write = fopen("huffman_table","w");     // single word huffman code
+	
+	  double prob[100]={0};
+	  
+		double pro;
+
+	  int loop=0;
+	  
+	 while(!feof(fp))
+	  {
+	   fscanf(fp,"%lf",&pro);
+	   ht[loop].weight=(float)pro;
+	   loop++;
+	  }
+	  
+	for(int i=0;i<66;i++)
+	{
+		cout<<ht[i].weight<<endl;        //test successful 2018.06.10
+	}
+	
+	fclose(fp);
+	
+//	createHT(ht,66);
 	
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	fclose(write);
 	
 	
 	
