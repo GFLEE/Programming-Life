@@ -9,7 +9,7 @@ typedef struct    //tree  Node stucture
 {
 	
 	int data;
-	int weight;
+	double weight;
 	int parent;
 	int LNode;
 	int RNode;
@@ -35,7 +35,7 @@ void createHT(HTNode ht[],int n)
 for(int m=n;m<2*n-1;m++)    // load data to nomal node ('n' to last node )   
 	{
 
-	int min1,min2;     //the minimum weight of two of all the leaf nodes.
+	double min1,min2;     //the minimum weight of two of all the leaf nodes.
 	    min1=min2=weight_MAX;	
 	
 	int leftNode,rightNode;   //confirm  the final left or right node  location
@@ -54,8 +54,7 @@ for(int m=n;m<2*n-1;m++)    // load data to nomal node ('n' to last node )
 				leftNode=i;
 				
 			}
-			else 
-			if(ht[i].weight<min2)     //min1 doesnt need the node that weight greater than itself. 
+			else if(ht[i].weight<min2)     //min1 doesnt need the node that weight greater than itself. 
 		//but the weight less than min2,so min2 will recieve this node_weight
 			{
 				min2=ht[i].weight;
@@ -96,25 +95,27 @@ int HfCoding(HTNode ht[],HCode hfcode[],int n)         // 'n' is the counts of l
 	
 	for(int i=0;i<n;i++)      //start coding for each leaf node;
 	{
-		temp_hfcode.start=N-1;    //load coding numbers from end to head,(satrt--)
-		
+		for(int k=0;k<N;k++)
+	{
+		temp_hfcode.code[k]=2;
+	}
+		temp_hfcode.start = N-1;    //load coding numbers from end to head,(satrt--)
 		current=i;              //coding for one node ,need to initiate the current_location &parent'location 
 		father=ht[i].parent;        
 		
 		while(father!=-1)
-		{
-			if(ht[father].LNode==current)     //if left_child is the current leaf node;
-			{
-				
-				temp_hfcode.code[temp_hfcode.start]=0;       //left -> 0
-				temp_hfcode.start--;      //flag move
-				
-			}
-			else{
-				temp_hfcode.code[temp_hfcode.start]=1;       //right -> 0
-				temp_hfcode.start--; 
-			}
+		{ 
 		
+		if(ht[father].LNode==current)
+		{
+			temp_hfcode.code[temp_hfcode.start--]=0;
+		}
+		else
+		{
+			temp_hfcode.code[temp_hfcode.start--]=1;
+
+		}
+		  
 		 current = father;     //father  for the next judge	
 		 father = ht[current].parent;
 		
@@ -123,10 +124,10 @@ int HfCoding(HTNode ht[],HCode hfcode[],int n)         // 'n' is the counts of l
 //		  father = ht[current].parent; 
 			
 		}        // now,one leaf node coding finished!
-		
-		    
-			hfcode[i] = temp_hfcode ;  //save one leaf node's coding to the array that save all nodes's huffman code.
-		    temp_hfcode.start+=1;  //revise the right starting  location of the huffman codes.
+	
+			temp_hfcode.start++;
+			hfcode[i] = temp_hfcode;  //save one leaf node's coding to the array that save all nodes's huffman code.
+		     //revise the right starting  location of the huffman codes.
 		
 	}
 
@@ -142,34 +143,34 @@ int main()
 	HTNode ht[MAX];
 	
      
-	ht[0].weight=1;
-	ht[1].weight=3;
-	ht[2].weight=5;
-	ht[3].weight=7;
-    ht[4].weight=9;
+	ht[0].weight=0.1;
+	ht[1].weight=0.2;
+	ht[2].weight=0.3;
+	ht[3].weight=0.4;
+//    ht[4].weight=9;
 
 	 
-	createHT(ht,5);
+	createHT(ht,4);
 	
 	
 
-	  for(int k=0;k<9;k++)
+	  for(int k=0;k<7;k++)
 	  {
 	  	cout<<ht[k].weight<<',';
 	  }
 	  
-	  cout<<endl<<ht[5].RNode<<endl;
+	  cout<<endl<<ht[4].RNode<<endl;
 	  
 //	  cout<<ht[7].weight<<','<<ht[8].weight<<endl;
 //cout<<ht[0].parent<<','<<ht[5].parent<<','<<ht[6].parent<<','<<ht[7].parent<<','<<ht[8].parent<<','<<ht[3].parent<<','<<ht[4].parent;
 	  
-	  HCode hfcodes[5];
+	  HCode hfcodes[4];
 //	  
-	  HfCoding(ht,hfcodes,5);
+	  HfCoding(ht,hfcodes,4);
 //	  
 	  cout<<endl;
 	  
-	  for(int i=0;i<5;i++)
+	  for(int i=0;i<4;i++)
 	  {
 	  	cout<<endl;
 	  	for(int j=hfcodes[i].start;j<N;j++)
@@ -178,6 +179,7 @@ int main()
 		  }
 	  	
 	  }
+
 	  
 	  
 	return  0;
