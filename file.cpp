@@ -9,10 +9,19 @@ int main()
 	FILE *write;
 	
 	long int total=0;
-	long	int arr[66]={0};      //, arr-z ,arr-Z && ' '
-	float prob[66]={0};   // single word probibility
+	long int arr[67]={0};      //, arr-z ,arr-Z && ' '
+	double prob[67]={0};   // single word probibility
     fp=fopen("sample.txt","r");
-    write=fopen("prob.txt","w");
+//    write=fopen("prob_char.txt","w");
+	write=fopen("prob.txt","w");
+    
+    long int others=0;
+    char chracters[67]={
+	'-','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q',
+    'r','s','t','u','v','w','x','y','z',
+	'A','B','C','D','E','F','G','H','I','J','K','L','M','N',
+    'O','P','Q','R','S','T','U','V','W','X','Y','Z',
+	'0','1','2','3','4','5','6','7','8','9',',','.',';','-'};
     
     char ch=fgetc(fp);
     while(ch!=EOF)
@@ -61,32 +70,32 @@ int main()
 			case 'M': arr[39]+=1; break;
 			case 'N': arr[40]+=1; break;
 			case 'O': arr[41]+=1; break;
-			case 'P': arr[41]+=1; break;
-			case 'Q': arr[42]+=1; break;
-			case 'R': arr[43]+=1; break;
-			case 'S': arr[44]+=1; break;
-			case 'T': arr[45]+=1; break;
-			case 'U': arr[46]+=1; break;
-			case 'V': arr[47]+=1; break;
-			case 'W': arr[48]+=1; break;
-			case 'X': arr[49]+=1; break;
-			case 'Y': arr[50]+=1; break;
-			case 'Z': arr[51]+=1; break;
-			case '0': arr[52]+=1; break;
-			case '1': arr[53]+=1; break;
-			case '2': arr[54]+=1; break;
-			case '3': arr[55]+=1; break;
-			case '4': arr[56]+=1; break;
-			case '5': arr[57]+=1; break;
-			case '6': arr[58]+=1; break;
-			case '7': arr[59]+=1; break;
-			case '8': arr[60]+=1; break;
-			case '9': arr[61]+=1; break;
-			case ',': arr[62]+=1; break;
-			case '.': arr[63]+=1; break;
-			case ';': arr[64]+=1; break;
-            case '\n': arr[65]+=1; break;
-
+			case 'P': arr[42]+=1; break;
+			case 'Q': arr[43]+=1; break;
+			case 'R': arr[44]+=1; break;
+			case 'S': arr[45]+=1; break;
+			case 'T': arr[46]+=1; break;
+			case 'U': arr[47]+=1; break;
+			case 'V': arr[48]+=1; break;
+			case 'W': arr[49]+=1; break;
+			case 'X': arr[50]+=1; break;
+			case 'Y': arr[51]+=1; break;
+			case 'Z': arr[52]+=1; break;
+			case '0': arr[53]+=1; break;
+			case '1': arr[54]+=1; break;
+			case '2': arr[55]+=1; break;
+			case '3': arr[56]+=1; break;
+			case '4': arr[57]+=1; break;
+			case '5': arr[58]+=1; break;
+			case '6': arr[59]+=1; break;
+			case '7': arr[60]+=1; break;
+			case '8': arr[61]+=1; break;
+			case '9': arr[62]+=1; break;
+			case ',': arr[63]+=1; break;
+			case '.': arr[64]+=1; break;
+			case ';': arr[65]+=1; break;
+            case '\n': arr[66]+=1; break;
+            default : others++; break;
 
 		}
     	
@@ -98,30 +107,35 @@ int main()
 	
 	fclose(fp);
 	
-	for(int i=0;i<66;i++)
+	for(int i=0;i<67;i++)
 	{
 		
 		cout<<arr[i]<<endl;
 	}
 	
 		cout<<endl<<"total: "<<total<<endl;
+		cout<<endl<<"others: "<<others<<endl;
+		cout<<endl<<"actually: "<<total-others<<endl;
 
 	cout<<endl<<endl;
-	for(int k=0;k<66;k++)
+	for(int k=0;k<67;k++)
 	{
-		prob[k]=arr[k]/(float)total;
+		prob[k]=arr[k]/(double)(total-others);
 	}
-	
-	for(int k=0;k<66;k++)
-	{
-		cout<<prob[k]<<endl;;
-	}
+//	
+//	for(int k=0;k<66;k++)
+//	{
+//		cout<<prob[k]<<endl;;
+//	}
 	
 
 
-		for(int i=0;i<66;i++)
+		for(int i=0;i<67;i++)
 		{
-			fprintf(write,"%.5f\n",prob[i]); 
+			
+			fprintf(write,"%.20f\n",prob[i]); 
+
+//			fprintf(write,"\t%.40f\t\t%c\n\n",prob[i],chracters[i]); 
 	
 		}
 

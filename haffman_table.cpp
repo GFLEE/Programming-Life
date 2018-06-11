@@ -1,15 +1,15 @@
 #include "iostream"
 using namespace std;
 #include <stdio.h>
-#define MAX 100   // leaf nodes
-#define weight_MAX 32767
-#define N 200      //max huffman coding length
+#define MAX 150   // leaf nodes
+#define weight_MAX 1
+#define N 300      //max huffman coding length
 
 typedef struct    //tree  Node stucture
 {
 	
 	int data;
-	float weight;
+	double weight;
 	int parent;
 	int LNode;
 	int RNode;
@@ -35,7 +35,7 @@ void createHT(HTNode ht[],int n)
 for(int m=n;m<2*n-1;m++)    // load data to nomal node ('n' to last node )   
 	{
 
-	float min1,min2;     //the minimum weight of two of all the leaf nodes.
+	double min1,min2;     //the minimum weight of two of all the leaf nodes.
 	    min1=min2=weight_MAX;	
 	
 	int leftNode,rightNode;   //confirm  the final left or right node  location
@@ -141,6 +141,12 @@ int HfCoding(HTNode ht[],HCode hfcode[],int n)         // 'n' is the counts of l
 int main()
 {
 	HTNode ht[MAX];
+	char chracters[67]={
+	'-','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q',
+    'r','s','t','u','v','w','x','y','z',
+	'A','B','C','D','E','F','G','H','I','J','K','L','M','N',
+    'O','P','Q','R','S','T','U','V','W','X','Y','Z',
+	'0','1','2','3','4','5','6','7','8','9',',','.',';','-'};
 	
 	FILE *fp;
 	fp=fopen("prob.txt","r");      //open probbility file
@@ -152,44 +158,72 @@ int main()
         }  
 	 
 	 FILE *write;
-	 write = fopen("huffman_table.txt","w");     // single word huffman code
+	 write = fopen("huffman_table.txt","a");     // single word huffman code
 	
-	  float prob[100]={0};
+	  double prob[100]={0};
 	  
-		float pro;
+		double pro;
 
 	  int loop=0;
 	  
 	 while(!feof(fp))
 	  {
-	   fscanf(fp,"%f",&pro);
+	   fscanf(fp,"%lf",&pro);
 	   ht[loop].weight=pro;
 	   loop++;
 	  }
 	  
-	for(int i=0;i<66;i++)
+	for(int i=0;i<67;i++)
 	{
 		cout<<ht[i].weight<<endl;        //test successful 2018.06.10
 	}
 	
+
+	
+	createHT(ht,67);
+	
+	
+	HCode hfcodes[67];
+//	
+	HfCoding(ht,hfcodes,67);
+	
+	cout<<endl;
+//	  
+	  for(int i=0;i<67;i++)
+	  {
+	  	cout<<endl;
+	  	for(int j=hfcodes[i].start;j<N;j++)
+	  	{
+	  		cout<<hfcodes[i].code[j];
+		  }
+	  	
+	  }
+	
+		for(int i=0;i<67;i++)
+		{
+//			
+//            fprintf(write,"\t");
+//            
+//            fprintf(write,"%c\t\t",chracters[i]);
+
+
+			for(int k=hfcodes[i].start;k<N;k++)
+			{
+				fprintf(write,"%d",hfcodes[i].code[k]); 
+
+			}
+		
+
+			fprintf(write,"\n");
+	
+		}
+	
+	
+	
+	
+	
+	
 	fclose(fp);
-	
-	createHT(ht,66);
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	fclose(write);
 	
 	
