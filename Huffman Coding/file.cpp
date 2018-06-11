@@ -94,7 +94,7 @@ int main()
 			case ',': arr[63]+=1; break;
 			case '.': arr[64]+=1; break;
 			case ';': arr[65]+=1; break;
-            case '\n': arr[66]+=1; break;
+            case '\n':arr[66]+=1; break;
             default : others++; break;
 
 		}
