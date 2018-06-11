@@ -141,6 +141,7 @@ int HfCoding(HTNode ht[],HCode hfcode[],int n)         // 'n' is the counts of l
 int main()
 {
 	HTNode ht[MAX];
+	
 	char chracters[67]={
 	'-','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q',
     'r','s','t','u','v','w','x','y','z',
@@ -158,7 +159,7 @@ int main()
         }  
 	 
 	 FILE *write;
-	 write = fopen("huffman_table.txt","a");     // single word huffman code
+//	 write = fopen("huffman_table.txt","a");     // single word huffman code
 	
 	  double prob[100]={0};
 	  
@@ -199,24 +200,24 @@ int main()
 	  	
 	  }
 	
-		for(int i=0;i<67;i++)
-		{
+//		for(int i=0;i<67;i++)
+//		{
 //			
-//            fprintf(write,"\t");
-//            
-//            fprintf(write,"%c\t\t",chracters[i]);
-
-
-			for(int k=hfcodes[i].start;k<N;k++)
-			{
-				fprintf(write,"%d",hfcodes[i].code[k]); 
-
-			}
-		
-
-			fprintf(write,"\n");
-	
-		}
+////            fprintf(write,"\t");
+////            
+////            fprintf(write,"%c\t\t",chracters[i]);
+//
+//
+//			for(int k=hfcodes[i].start;k<N;k++)
+//			{
+//				fprintf(write,"%d",hfcodes[i].code[k]); 
+//
+//			}
+//		
+//
+//			fprintf(write,"\n");
+//	
+//		}
 	
 	
 	
@@ -224,7 +225,7 @@ int main()
 	
 	
 	fclose(fp);
-	fclose(write);
+//	fclose(write);
 	
 	
 	
