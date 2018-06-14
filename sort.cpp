@@ -2,15 +2,7 @@
 using namespace std;
 
 //=======================get aarray length===============
-int length(int *arr)
-{
-	int len=0;
-	while(arr[len]!='\0'){
-		len++;
-	} 
-	
-	return len;
-}
+
 
 int partition(int *arr,int start,int end)
 {
@@ -65,16 +57,16 @@ return mid;
 int sort(int *arr,int start,int end)
 {
 	
+	int mid;
 	
 	
-	
-	while(start<end)
+	if(start<end)
 	{
+		mid=partition(arr,start,end);
 		
-	   key=partition(arr,0,key-1);
-		
-		partition(arr,key+1,end);
-		
+		sort(arr,start,mid-1);
+		sort(arr,mid+1,end);
+	
 	}
 	
 	
@@ -83,10 +75,16 @@ int sort(int *arr,int start,int end)
 
 int main()
 {
-	int arr[]={10,3,2,5,7,9,19,4,11,8};
-	partition(arr,0,9);
-//	
-	for(int i=0;i<10;i++)
+	int arr[]={10,3,2,5,7,9,19,4,11,8,1,2,3,4,5,21,121,42,24,867,65,23,23412,44,56,7656,34};
+	
+      
+       
+	
+	
+	
+////	
+	sort(arr,0,26);
+	for(int i=0;i<25;i++)
 	cout<<arr[i]<<' ';
 
 
