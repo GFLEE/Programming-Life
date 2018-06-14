@@ -12,54 +12,53 @@ int length(int *arr)
 	return len;
 }
 
-int partition(int *arr)
+int partition(int *arr,int start,int end)
 {
-	int midd;
-	int len=length(arr);
-	int i=0;int j=len-1;
+	int low=start;
+	int high=end;
+	int mid;
 	
-	int sta=arr[3];
-	while((i!=j)&&(j>0)&&i<len)
+	while(low<high)
 	{
-		while(i!=j&&j>0)
+		while(low<high&&(arr[high]>arr[low]))
 		{
-			if(arr[j]<sta)
-			{
-				int temp;
-				temp=arr[j];
-				arr[j]=arr[i];
-				arr[i]=temp;
-				break;
-			}
-			j--;
-			
-		};
-		
-		while(i!=j&&i<len)
-		{
-			if(arr[i]>sta)
-			{
-				int temp;
-				temp=arr[j];
-				arr[j]=arr[i];
-				arr[i]=temp;
-				break;
-			}
-			i++;
-		
+			high--;
 		}
-		;
+		
+		if(arr[high]<arr[low])
+		{
+			
+			int temp;
+			temp=arr[low];
+			arr[low]=arr[high];
+			arr[high]=temp;
+			
+		}
+	
+//==========================================================================
+			while(low<high&&(arr[low]<arr[high]))
+		{
+			low++;
+		}
+		
+		if(arr[high]<arr[low])
+		{
+			
+			int temp;
+			temp=arr[low];
+			arr[low]=arr[high];
+			arr[high]=temp;
+			
+			
+		}
+	
 	}
 	
-	midd=i;
-	
-	for(int i=0;i<len;i++)
-	{
-		cout<<arr[i]<<',';
-	}
-	cout<<endl; 
-	cout<<midd;
-	return midd;
+	mid=low;
+	cout<<mid<<endl;
+	mid=high;
+	cout<<mid<<endl;
+return mid;
 	
 }
 
@@ -67,15 +66,33 @@ int sort(int *arr,int start,int end)
 {
 	
 	
+	
+	
+	while(start<end)
+	{
+		
+	   key=partition(arr,0,key-1);
+		
+		partition(arr,key+1,end);
+		
+	}
+	
+	
 	return 0;
 }
 
 int main()
 {
-	int arr[]={10,3,2,5,7,9,1,4,6,8};
-	partition(arr);
-	
-	
+	int arr[]={10,3,2,5,7,9,19,4,11,8};
+	partition(arr,0,9);
+//	
+	for(int i=0;i<10;i++)
+	cout<<arr[i]<<' ';
+
+
+
+
+
 	
 	
 	return 0;
